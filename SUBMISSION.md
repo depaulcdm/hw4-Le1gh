@@ -1,5 +1,7 @@
 # Instructions
 **TODO:** Replace this line with your name and student ID.
+Leigh Arber
+
 
 **TODO:** Add your screen captures to a new directory called [images](images).
 
