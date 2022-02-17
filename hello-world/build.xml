@@ -17,8 +17,10 @@
 	</target>
 	
     <target name="resolve">
-	  <ivy:retrieve/>	
-	  <!--
+		<ivy:retrieve pathid="compile.classpath" pattern="${ivy.lib.dir}/[conf]/[artifact].[ext]"/>	
+		<ivy:cachefileset setid="compile.classpath" conf="compile"/>
+		<ivy:cachefileset setid="test.classpath" conf="test" />		
+		<!--
 	  TODO:
 	  Perform an Ivy retrieve using a pathid of 'compile.classpath' and a pattern of
 	  '${ivy.lib.dir}/[conf]/[artifact].[ext]'.
@@ -32,13 +34,17 @@
 	<!--
 	TODO: Make this target depend on the 'clean' and 'resolve' targets.
 	-->
-	<target name="compile" depends="resolve, clean">
+	<target name="compile" depends="resolve,clean">
 	  <mkdir dir="${classes.dir}"/>
-	  <javac srcdir="${src.dir}" destdir="${classes.dir}">
+	  <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}">
 	    <!--
 		TODO: Define the classpath to be a combination of the 'compile.classpath' fileset
 		created by the "resolve" target above and a pathelement of the 'classes.dir' property.
 		-->
+		<classpath>
+			<fileset refid="compile.classpath" />
+			<pathelement path="${classes.dir}" />
+		</classpath>
 	  </javac>
 	</target>
 
@@ -53,6 +59,11 @@
 		created by the "resolve" target above, a pathelement of the 'classes.dir' property,
 		and a second pathelement of the 'classes.test.dir' property.
 		-->
+		<classpath>
+			<fileset refid="compile.classpath" />
+			<pathelement path="${classes.dir}" />
+			<pathelement path="${classes.test.dir}" />
+		</classpath>
 	  </javac>
 	</target>
 
@@ -64,6 +75,11 @@
 		created by the "resolve" target above, a pathelement of the 'classes.dir' property,
 		and a second pathelement of the 'classes.test.dir' property.
 		-->
+		<classpath>
+			<fileset refid="compile.classpath" />
+			<pathelement path="${classes.dir}" />
+			<pathelement path="${classes.test.dir}" />
+		</classpath>
 
 		<formatter type="plain" />
         

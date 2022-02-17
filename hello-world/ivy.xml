@@ -6,6 +6,8 @@
 	configuration should be private.
 	-->
 	<configurations>
+		<conf name="compile" visibility="public" />
+		<conf name="test" visibility="private" />
 	</configurations>
 	
 	<!--
@@ -23,6 +25,12 @@
 	as the Maven artifactId, and rev is the same as the Maven
 	version.
 	-->	
-    <dependencies defaultconf="compile">
-    </dependencies>
+
+	<!--<dependencies defaultconf="compile">-->
+	<dependencies>
+		<dependency conf="compile->default" org="log4j" name="log4j" rev="1.2.17"/>
+		<dependency org="junit" name="junit" rev="4.12">
+			<artifact name="junit" type="jar" />
+		</dependency>
+	</dependencies>
 </ivy-module>
