@@ -2,6 +2,7 @@
 **TODO:** Replace this line with your name and student ID.
 Name: Leigh Arber  StudentID: 1927005 
 
+
 **TODO:** Add your screen captures to a new directory called [images](images).
 
 **HINT:** Embed your screen captures as requested in the sections below. You can embed the image using the following syntax:
